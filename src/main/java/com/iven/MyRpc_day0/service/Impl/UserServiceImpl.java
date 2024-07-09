@@ -1,17 +1,11 @@
-package part1.common.service.Impl;
+package com.iven.MyRpc_day0.service.Impl;
 
-
-import part1.common.pojo.User;
-import part1.common.service.UserService;
+import com.iven.MyRpc_day0.common.User;
+import com.iven.MyRpc_day0.service.UserService;
 
 import java.util.Random;
 import java.util.UUID;
 
-/**
- * @author 19
- * @version 1.0
- * @create 2024/7/2
- */
 public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUserId(Integer id) {

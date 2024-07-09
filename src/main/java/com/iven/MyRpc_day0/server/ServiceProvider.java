@@ -1,12 +1,13 @@
-package part1.Server.provider;
+package com.iven.MyRpc_day0.server;
+
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author 19
+ * @author wxx
  * @version 1.0
- * @create 2024/7/2
+ * @create 2024/2/16 17:35
  */
 //本地服务存放器
 public class ServiceProvider {

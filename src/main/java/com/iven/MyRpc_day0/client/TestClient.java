@@ -1,14 +1,16 @@
-package part1.Client;
+package com.iven.MyRpc_day0.client;
 
 
-import part1.Client.proxy.ClientProxy;
-import part1.common.service.UserService;
-import part1.common.pojo.User;
+
+
+import com.iven.MyRpc_day0.client.ClientProxy;
+import com.iven.MyRpc_day0.service.UserService;
+import com.iven.MyRpc_day0.common.User;
 
 /**
- * @author 19
+ * @author wxx
  * @version 1.0
- * @create 2024/7/2 18:31
+ * @create 2024/2/6 18:39
  */
 public class TestClient {
     public static void main(String[] args) {

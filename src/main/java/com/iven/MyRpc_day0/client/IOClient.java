@@ -1,9 +1,8 @@
-package part1.Client;
+package com.iven.MyRpc_day0.client;
 
 
-
-import part1.common.Message.RpcRequest;
-import part1.common.Message.RpcResponse;
+import com.iven.MyRpc_day0.common.RpcRequest;
+import com.iven.MyRpc_day0.common.RpcResponse;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,9 +10,9 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 /**
- * @author 19
+ * @author wxx
  * @version 1.0
- * @create 2024/7/2 18:31
+ * @create 2024/2/4 18:31
  */
 public class IOClient {
     //这里负责底层与服务端的通信，发送request，返回response

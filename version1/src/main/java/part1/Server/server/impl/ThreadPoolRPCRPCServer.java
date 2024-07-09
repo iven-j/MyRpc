@@ -14,9 +14,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author wxx
+ * @author 19
  * @version 1.0
- * @create 2024/2/19 15:30
+ * @create 2024/7/2
  */
 public class ThreadPoolRPCRPCServer implements RpcServer {
     private final ThreadPoolExecutor threadPool;

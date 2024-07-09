@@ -1,4 +1,4 @@
-package part1.common.pojo;
+package com.iven.MyRpc_day0.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,11 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-/**
- * @author 19
- * @version 1.0
- * @create 2024/7/2
- */
 @Builder
 @Data
 @NoArgsConstructor
@@ -22,4 +17,3 @@ public class User implements Serializable {
     private String userName;
     private Boolean sex;
 }
-

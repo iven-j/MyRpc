@@ -1,10 +1,8 @@
-package part1.Server.server.work;
+package com.iven.MyRpc_day0.server;
 
-
+import com.iven.MyRpc_day0.common.RpcRequest;
+import com.iven.MyRpc_day0.common.RpcResponse;
 import lombok.AllArgsConstructor;
-import part1.Server.provider.ServiceProvider;
-import part1.common.Message.RpcRequest;
-import part1.common.Message.RpcResponse;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -14,9 +12,9 @@ import java.lang.reflect.Method;
 import java.net.Socket;
 
 /**
- * @author 19
+ * @author wxx
  * @version 1.0
- * @create 2024/7/2
+ * @create 2024/2/14 17:39
  */
 @AllArgsConstructor
 public class WorkThread implements Runnable{
@@ -46,7 +44,7 @@ public class WorkThread implements Runnable{
         //反射调用方法
         Method method=null;
         try {
-            method= service.getClass().getMethod(rpcRequest.getMethodName(), rpcRequest.getParamsType());
+            method= service.getClass().getMethod(rpcRequest.getMethodName(), rpcRequest.getParamsTypes());
             Object invoke=method.invoke(service,rpcRequest.getParams());
             return RpcResponse.sussess(invoke);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {

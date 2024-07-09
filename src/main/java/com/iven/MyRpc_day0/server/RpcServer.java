@@ -1,9 +1,11 @@
-package part1.Server.server;
+package com.iven.MyRpc_day0.server;
+
+
 
 /**
- * @author 19
+ * @author wxx
  * @version 1.0
- * @create 2024/7/2
+ * @create 2024/2/12 11:26
  */
 public interface RpcServer {
     //开启监听
