@@ -8,19 +8,25 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.AttributeKey;
 import part1.Client.rpcClient.RpcClient;
-import part2.Client.netty.nettyInitializer.NettyClientInitializer;
-import part2.common.Message.RpcRequest;
-import part2.common.Message.RpcResponse;
+import part1.Client.netty.nettyInitializer.NettyClientInitializer;
+import part1.common.Message.RpcRequest;
+import part1.common.Message.RpcResponse;
+import part1.Client.serviceCenter.ServiceCenter;
+import part1.Client.serviceCenter.ZKServiceCenter;
+
+import java.net.InetSocketAddress;
 
 public class NettyRpcClient implements RpcClient {
-    private String host;
-    private int port;
+//    private String host;
+//    private int port;
     private static final Bootstrap bootstrap;
     private static final EventLoopGroup eventLoopGroup;
-    public NettyRpcClient(String host,int port){
-        this.host=host;
-        this.port=port;
+
+    private ServiceCenter serviceCenter;
+    public NettyRpcClient(){
+        this.serviceCenter=new ZKServiceCenter();
     }
+
     //netty客户端初始化
     static {
         eventLoopGroup = new NioEventLoopGroup();
@@ -31,13 +37,12 @@ public class NettyRpcClient implements RpcClient {
     }
 
     @Override
-    public RpcResponse sendRequesr(part1.common.Message.RpcRequest request) {
-        return null;
-    }
-
-    @Override
     public RpcResponse sendRequest(RpcRequest request){
         try {
+            //先从注册中心获取host,post
+            InetSocketAddress address = serviceCenter.serviceDiscovery(request.getInterfaceName());
+            String host = address.getHostName();
+            int port = address.getPort();
             //创建一个channelFuture对象，代表这一个操作事件，sync方法表示堵塞直到connect完成
             ChannelFuture channelFuture  = bootstrap.connect(host, port).sync();
             //channel表示一个连接的单位，类似socket
@@ -50,7 +55,7 @@ public class NettyRpcClient implements RpcClient {
             // AttributeKey是，线程隔离的，不会有线程安全问题。
             // 当前场景下选择堵塞获取结果
             // 其它场景也可以选择添加监听器的方式来异步获取结果 channelFuture.addListener...
-            AttributeKey<RpcResponse> key = AttributeKey.valueOf("RPCResponse");
+            AttributeKey<RpcResponse> key = AttributeKey.valueOf("RpcResponse");
             RpcResponse response = channel.attr(key).get();
 
             System.out.println(response);
